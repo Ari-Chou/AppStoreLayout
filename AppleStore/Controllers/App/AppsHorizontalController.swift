@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import SDWebImage
 
 class AppsHorizontalController: BaseCollectionViewController, UICollectionViewDelegateFlowLayout{
     // MARK: - Propertise
     fileprivate let cellID = "cell"
     fileprivate let topBottomPadding: CGFloat = 12
     fileprivate let spacing: CGFloat = 10
+    var appGroup: AppGroup?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -28,11 +30,14 @@ class AppsHorizontalController: BaseCollectionViewController, UICollectionViewDe
 extension AppsHorizontalController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return appGroup?.feed.results.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! AppsHorizontalCell
+        cell.appNameLabel.text = appGroup?.feed.results[indexPath.item].name
+        cell.componeyLabel.text = appGroup?.feed.results[indexPath.item].artistName
+        cell.appIcomImageView.sd_setImage(with:URL(string:(appGroup?.feed.results[indexPath.item].artworkUrl100)!), completed: nil)
         return cell
     }
     

@@ -21,6 +21,9 @@ class AppsHeaderHorizontalController: BaseCollectionViewController, UICollection
             layout.scrollDirection = .horizontal
         }
     }
+    
+    // MARK: - Functions
+    
 }
 
 
