@@ -45,6 +45,25 @@ class APIService {
         fetch(urlStrig: urlString, completion: completion)
     }
     
+    // For Apps Page Header
+    func fetchSocialApps(completion: @escaping ([SocialApp]?, Error?) -> Void) {
+        let urlString = "https://api.letsbuildthatapp.com/appstore/social"
+        guard let url = URL(string: urlString) else { return }
+        URLSession.shared.dataTask(with: url) { (data, resp, err) in
+            if let err = err {
+                completion(nil, err)
+                return
+            }
+            do {
+                let objects = try JSONDecoder().decode([SocialApp].self, from: data!)
+                // success
+                completion(objects, nil)
+            } catch {
+                completion(nil, error)
+            }
+            }.resume()
+    }
+    
     // MARK: - Fetching Helper
     fileprivate func fetch(urlStrig: String, completion: @escaping (AppGroup?, Error?) -> Void) {
         guard let url = URL(string: urlStrig) else { return }

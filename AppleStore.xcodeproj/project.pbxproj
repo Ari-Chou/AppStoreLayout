@@ -28,6 +28,7 @@
 		6A7AEA87261946F200426F98 /* AppsHeaderHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7AEA86261946F200426F98 /* AppsHeaderHorizontalController.swift */; };
 		6A7AEA8A26194A6700426F98 /* AppsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7AEA8926194A6700426F98 /* AppsHeaderCell.swift */; };
 		6A7AEA9026195CC500426F98 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7AEA8F26195CC500426F98 /* AppGroup.swift */; };
+		6A7AEA962619AAB100426F98 /* SocialApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7AEA952619AAB100426F98 /* SocialApp.swift */; };
 		A69F160C6057CB3B3467DBD6 /* Pods_AppleStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E1B26A84EA9714BA4EB8CD /* Pods_AppleStore.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		6A7AEA86261946F200426F98 /* AppsHeaderHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHeaderHorizontalController.swift; sourceTree = "<group>"; };
 		6A7AEA8926194A6700426F98 /* AppsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHeaderCell.swift; sourceTree = "<group>"; };
 		6A7AEA8F26195CC500426F98 /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
+		6A7AEA952619AAB100426F98 /* SocialApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialApp.swift; sourceTree = "<group>"; };
 		85E1B26A84EA9714BA4EB8CD /* Pods_AppleStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppleStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -170,6 +172,7 @@
 			children = (
 				6A7AEA562618692100426F98 /* SearchResult.swift */,
 				6A7AEA8F26195CC500426F98 /* AppGroup.swift */,
+				6A7AEA952619AAB100426F98 /* SocialApp.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 			files = (
 				6A7AEA4526184CDF00426F98 /* SearchResultsCell.swift in Sources */,
 				6A7AEA522618636300426F98 /* APIService.swift in Sources */,
+				6A7AEA962619AAB100426F98 /* SocialApp.swift in Sources */,
 				6A7AEA6C2618C2C200426F98 /* EXT.swift in Sources */,
 				6A7AEA9026195CC500426F98 /* AppGroup.swift in Sources */,
 				6A7AEA282618363100426F98 /* ViewController.swift in Sources */,

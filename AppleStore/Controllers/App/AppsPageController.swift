@@ -11,7 +11,16 @@ class AppsPageController: BaseCollectionViewController, UICollectionViewDelegate
     // MARK: - Propertise
     fileprivate let cellID = "cell"
     fileprivate let headerID = "header"
+    var socialApps = [SocialApp]()
     var groups = [AppGroup]()
+    
+    let activityIndicatorView: UIActivityIndicatorView = {
+        let aiv = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+        aiv.color = .black
+        aiv.startAnimating()
+        aiv.hidesWhenStopped = true
+        return aiv
+    }()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -22,9 +31,15 @@ class AppsPageController: BaseCollectionViewController, UICollectionViewDelegate
         fetchData()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        view.addSubview(activityIndicatorView)
+        activityIndicatorView.frame = view.bounds
+    }
+    
     // MARK: - Functions
     private func fetchData() {
-        var dispatchGroup = DispatchGroup()
+        let dispatchGroup = DispatchGroup()
         var group1: AppGroup?
         var group2: AppGroup?
         var group3: AppGroup?
@@ -59,6 +74,15 @@ class AppsPageController: BaseCollectionViewController, UICollectionViewDelegate
             group3 = topGrossing
         }
         
+        dispatchGroup.enter()
+        APIService.shared.fetchSocialApps { (socialApps, error) in
+            dispatchGroup.leave()
+            if let error = error {
+                print("Apps Page Controller can not fetch the header data", error.localizedDescription)
+            }
+            self.socialApps = socialApps ?? []
+        }
+        
         dispatchGroup.notify(queue: .main) {
             if let group = group1 {
                 self.groups.append(group)
@@ -69,6 +93,7 @@ class AppsPageController: BaseCollectionViewController, UICollectionViewDelegate
             if let group = group3 {
                 self.groups.append(group)
             }
+            self.activityIndicatorView.isHidden = true
             self.collectionView.reloadData()
         }
     }
@@ -100,6 +125,8 @@ extension AppsPageController {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerID, for: indexPath) as! AppsPageHeader
+        header.appsHeaderHorizontalController.socialApps = self.socialApps
+        header.appsHeaderHorizontalController.collectionView.reloadData()
         return header
     }
     

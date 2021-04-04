@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import SDWebImage
 
 class AppsHeaderHorizontalController: BaseCollectionViewController, UICollectionViewDelegateFlowLayout {
     // MARK: - Propertise
     fileprivate let cellID = "cell"
-    
+    var socialApps = [SocialApp]()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -31,12 +32,17 @@ class AppsHeaderHorizontalController: BaseCollectionViewController, UICollection
 extension AppsHeaderHorizontalController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! AppsHeaderCell
+        let socialApp = socialApps[indexPath.item]
+        
+        cell.componeyLabel.text = socialApp.name
+        cell.titleLabel.text = socialApp.tagline
+        cell.imageView.sd_setImage(with: URL(string: socialApp.imageUrl), completed: nil)
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return socialApps.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
